@@ -87,8 +87,23 @@ class Cuboid(Shape):
 	""" PC generation function.
 	# Arguments
 	"""
-	def __init__(self):
-		raise NotImplementedError("Yet to be implemented")
+	def __init__(self, b,h,l):
+		self.b = b
+		self.h = h
+		self.l = l
+		self._cuboid = np.zeros((b*h*l, 3))
+
+
+	def numpy(self):
+		b = self.b
+		h = self.h
+		l = self.l
+
+		for j in range(0,b*h*l, b*h):
+			for i in range(b*h):
+				self._cuboid[i+j,:] =  self.x + i%b, self.y + int(i/h) , self.z + int(j/(b*h))
+		return self._cuboid
+
 
 class Parallelepiped(Shape):
 	""" PC generation function.
