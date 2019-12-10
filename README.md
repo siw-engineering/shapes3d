@@ -6,19 +6,18 @@ A point cloud generator for various 3D shapes
 To do
 
 ```
-# Example
+# Dataloaders
 ```
 To do
 
 ```
-
-![](imgs/cuboids.png)
-![](imgs/spherical.png)
-![](imgs/cylinder.png)
-
 # Visualize
 
 Visualize the generated dataset 
 ```
 To do
 ```
+
+![](imgs/cuboids.png)
+![](imgs/spherical.png)
+![](imgs/cylinder.png)
