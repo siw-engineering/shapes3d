@@ -140,6 +140,7 @@ class Cylinder(Shape):
 		radius: radius of the the cylinder.
 	"""
 	def __init__(self, radius=5, length=10):
+		super().__init__()
 		self.radius = radius
 		self.length = length
 
@@ -153,7 +154,7 @@ class Cylinder(Shape):
 
 		for l in range(0,2*180*radius*length, 2*180*radius):
 			for i in range(2*180*radius):
-				cylinder[i+l,:] = radius * np.sin(np.radians(i)), radius * np.cos(np.radians(i)), int(l/(2*180*radius)) 
+				cylinder[i+l,:] = self.x + radius * np.sin(np.radians(i)), self.y + radius * np.cos(np.radians(i)), self.z + int(l/(2*180*radius)) 
 		return cylinder
 			
 
