@@ -3,6 +3,8 @@ email: christeejacobs@gmail.com
 """
 
 import numpy as np
+from utils import get_rotation_matrix
+
 
 class Shape(object):
 	"""Abstract shape class.
@@ -113,19 +115,24 @@ class Sphere(Shape):
 		radius: radius of the the sphere.
 	"""
 	def __init__(self, radius=1):
-		raise NotImplementedError("Yet to be implemented")
-		# cords = np.zeros((0,3))
-		# r = 1
-		# for z_angle in range(0,360):
-		# 	xyz = np.zeros((360,3))
-		# 	y = r * np.sin(np.radians([x for x in range(0,360)]))
-		# 	x = r * np.cos(np.radians([x for x in range(0,360)]))
-			
-		# 	xyz[:,0] = x 
-		# 	xyz[:,1] = y
-			
-			
-		# 	cords = np.concatenate([cords, xyz], axis=0)	
+		super().__init__()
+		self.radius = radius
+
+	def numpy(self):
+		radius = self.radius
+		sphere = np.zeros((2*180*radius*360, 3))
+		circle = np.zeros((2*180*radius, 3))
+		circle[:, 0] =  self.x + np.sin(np.radians([x for x in range(0,2*180*radius)]))
+		circle[:, 1] =  self.y + np.cos(np.radians([x for x in range(0,2*180*radius)]))
+		circle[:, 2] =	self.z 
+
+		for z_theta in range(360):
+			rx, _, _ = get_rotation_matrix(z_theta)
+			for i, (x,y,z) in enumerate(circle):
+				sphere[i + z_theta*360] = np.matmul(rx,np.array([x,y,z]).T)
+
+		return sphere
+
 
 class Cylinder(Shape):
 	"""Cylinder PC generation function.
@@ -147,7 +154,6 @@ class Cylinder(Shape):
 		for l in range(0,2*180*radius*length, 2*180*radius):
 			for i in range(2*180*radius):
 				cylinder[i+l,:] = radius * np.sin(np.radians(i)), radius * np.cos(np.radians(i)), int(l/(2*180*radius)) 
-			print (int(l/(2*180*radius)))
 		return cylinder
 			
 
