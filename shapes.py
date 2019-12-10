@@ -68,15 +68,46 @@ class Sphere(Shape):
 		radius: radius of the the sphere.
 	"""
 	def __init__(self, radius=1):
-		cords = np.zeros((0,3))
-		r = 1
-		for z_angle in range(0,360):
-			xyz = np.zeros((360,3))
-			y = r * np.sin(np.radians([x for x in range(0,360)]))
-			x = r * np.cos(np.radians([x for x in range(0,360)]))
+		raise NotImplementedError("Yet to be implemented")
+		# cords = np.zeros((0,3))
+		# r = 1
+		# for z_angle in range(0,360):
+		# 	xyz = np.zeros((360,3))
+		# 	y = r * np.sin(np.radians([x for x in range(0,360)]))
+		# 	x = r * np.cos(np.radians([x for x in range(0,360)]))
 			
-			xyz[:,0] = x 
-			xyz[:,1] = y
+		# 	xyz[:,0] = x 
+		# 	xyz[:,1] = y
 			
 			
-			cords = np.concatenate([cords, xyz], axis=0)	
+		# 	cords = np.concatenate([cords, xyz], axis=0)	
+
+
+class Cuboid(Shape):
+	""" PC generation function.
+	# Arguments
+	"""
+	def __init__(self):
+		raise NotImplementedError("Yet to be implemented")
+
+class Parallelepiped(Shape):
+	""" PC generation function.
+	# Arguments
+	"""
+	def __init__(self):
+		raise NotImplementedError("Yet to be implemented")
+
+class Trapezium(Shape):
+	""" PC generation function.
+	# Arguments
+	"""
+	def __init__(self):
+		raise NotImplementedError("Yet to be implemented")
+
+class Rhombohedron(Shape):
+	""" PC generation function.
+	# Arguments
+	"""
+	def __init__(self, l,b,w):
+		raise NotImplementedError("Yet to be implemented")
+
