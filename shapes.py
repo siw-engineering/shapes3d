@@ -62,26 +62,6 @@ class Cube(Shape):
 		return self._cube
 
 
-class Sphere(Shape):
-	"""Sphere PC generation function.
-	# Arguments
-		radius: radius of the the sphere.
-	"""
-	def __init__(self, radius=1):
-		raise NotImplementedError("Yet to be implemented")
-		# cords = np.zeros((0,3))
-		# r = 1
-		# for z_angle in range(0,360):
-		# 	xyz = np.zeros((360,3))
-		# 	y = r * np.sin(np.radians([x for x in range(0,360)]))
-		# 	x = r * np.cos(np.radians([x for x in range(0,360)]))
-			
-		# 	xyz[:,0] = x 
-		# 	xyz[:,1] = y
-			
-			
-		# 	cords = np.concatenate([cords, xyz], axis=0)	
-
 
 class Cuboid(Shape):
 	""" PC generation function.
@@ -125,4 +105,49 @@ class Rhombohedron(Shape):
 	"""
 	def __init__(self, l,b,w):
 		raise NotImplementedError("Yet to be implemented")
+
+
+class Sphere(Shape):
+	"""Sphere PC generation function.
+	# Arguments
+		radius: radius of the the sphere.
+	"""
+	def __init__(self, radius=1):
+		raise NotImplementedError("Yet to be implemented")
+		# cords = np.zeros((0,3))
+		# r = 1
+		# for z_angle in range(0,360):
+		# 	xyz = np.zeros((360,3))
+		# 	y = r * np.sin(np.radians([x for x in range(0,360)]))
+		# 	x = r * np.cos(np.radians([x for x in range(0,360)]))
+			
+		# 	xyz[:,0] = x 
+		# 	xyz[:,1] = y
+			
+			
+		# 	cords = np.concatenate([cords, xyz], axis=0)	
+
+class Cylinder(Shape):
+	"""Cylinder PC generation function.
+	# Arguments
+		radius: radius of the the cylinder.
+	"""
+	def __init__(self, radius=5, length=10):
+		self.radius = radius
+		self.length = length
+
+
+
+	def numpy(self):
+		radius = self.radius
+		length = self.length
+
+		cylinder = np.zeros((2*180*radius*length,3))
+
+		for l in range(0,2*180*radius*length, 2*180*radius):
+			for i in range(2*180*radius):
+				cylinder[i+l,:] = radius * np.sin(np.radians(i)), radius * np.cos(np.radians(i)), int(l/(2*180*radius)) 
+			print (int(l/(2*180*radius)))
+		return cylinder
+			
 
