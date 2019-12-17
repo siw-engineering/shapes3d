@@ -77,6 +77,7 @@ class Parallelepiped(Shape):
 		s3.rotate(theta=theta, axis=2)
 		s1.rotate(theta=theta, axis=2)
 		
+		#need to fix when theta > 90
 		s3.set_pos([l-1,0,0])
 		roof.set_pos([-b*np.cos(np.radians(90-theta)),b*np.sin(np.radians(90-theta)),0])
 
@@ -86,9 +87,8 @@ class Parallelepiped(Shape):
 
 
 
-
 		
-class Trapezium(Shape):
+class trapezoidal_prism(Shape):
 	""" PC generation function.
 	# Arguments
 	"""
@@ -99,9 +99,8 @@ class Rhombohedron(Shape):
 	""" PC generation function.
 	# Arguments
 	"""
-	def __init__(self, l,b,w):
-		raise NotImplementedError("Yet to be implemented")
-
+	def __init__(self, side=10, theta=30):
+		self._pc = Parallelepiped(l=side,b=side,w=side,theta=theta).pc
 
 class Sphere(Shape):
 	"""Sphere PC generation function.
