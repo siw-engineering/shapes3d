@@ -9,6 +9,20 @@ from utils import get_rotation_matrix
 from shapes.r2 import Rect
 
 
+class Cuboid(Shape):
+	"""Cuboid PC generation function.
+	# Arguments
+	"""
+	def __init__(self, l=10,b=5,w=5):
+		super().__init__()
+		self.l = l
+		self.b = b
+		self.w = w
+		self._pc = np.zeros((l*b*w, 3))
+		for j in range(0,l*b*w, l*b):
+			for i in range(l*b):
+				self._pc[i+j,:] =  self.x + i%l, self.y + int(i/l) , self.z + int(j/(l*b))
+
 
 class Cube(Shape):
 	"""Cube PC generation function.
@@ -30,26 +44,7 @@ class Cube(Shape):
 
 
 
-class Cuboid(Shape):
-	"""Cuboid PC generation function.
-	# Arguments
-	"""
-	def __init__(self, b,h,l):
-		self.b = b
-		self.h = h
-		self.l = l
-		self._cuboid = np.zeros((b*h*l, 3))
 
-
-	def numpy(self):
-		b = self.b
-		h = self.h
-		l = self.l
-
-		for j in range(0,b*h*l, b*h):
-			for i in range(b*h):
-				self._cuboid[i+j,:] =  self.x + i%b, self.y + int(i/h) , self.z + int(j/(b*h))
-		return self._cuboid
 
 
 class Parallelepiped(Shape):
